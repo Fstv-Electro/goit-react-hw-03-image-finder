@@ -1,0 +1,9 @@
+.item {
+  border-radius: 2px;
+}
+
+img {
+  width: 400px;
+  height: 220px;
+  object-fit: cover;
+}

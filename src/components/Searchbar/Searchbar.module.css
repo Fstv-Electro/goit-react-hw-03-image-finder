@@ -1,0 +1,45 @@
+.searchbar {
+  top: 0;
+  left: 0;
+  position: sticky;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  padding: 20px;
+  background-color: #8f9bf6;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  width: 40%;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.button {
+  display: inline-block;
+  width: 84px;
+  height: 42px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid #7185d5;
+  border-radius: 24px;
+  background-color: inherit;
+}
+
+.label {
+  padding: 8px;
+  overflow: hidden;
+}
+
+.input {
+  display: inline-block;
+  width: 100%;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  padding: 0 8px;
+}
