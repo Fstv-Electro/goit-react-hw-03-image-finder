@@ -15,6 +15,7 @@ export default class ImageGallery extends Component {
     state = {
         images: [],
         status: 'idle',
+        statusBtn: true,
     };
 
     componentDidUpdate(prevProps, prevState) {
@@ -34,6 +35,7 @@ export default class ImageGallery extends Component {
             this.setState({
                 images: res.hits,
                 status: 'resolve',
+                statusBtn: page < Math.ceil(res.totalHits / 12),
             });
         }).catch(error => this.setState({ status: 'rejected' }));
     };
@@ -42,15 +44,18 @@ export default class ImageGallery extends Component {
         const { inputValue, page } = this.props;
 
         fetchQuery(inputValue, page).then(res => {
+
             this.setState(prevState => ({
                 images: [...prevState.images, ...res.hits],
                 status: 'resolve',
+                statusBtn: page < Math.ceil(res.totalHits / 12),
             }));
+
         }).catch(error => this.setState({ status: 'rejected' }));
     };
 
     render() {
-        const { images, status } = this.state;
+        const { images, status, statusBtn } = this.state;
 
         if (status === 'pending') {
             return <Loader />;
@@ -69,8 +74,8 @@ export default class ImageGallery extends Component {
                             />
                         ))}
                     </ul>
-                    {this.state.images.length !== 0 ? (
-                        <Button onClick={this.props.LoadMoreBtn} />
+                    {images.length !== 0 ? (
+                       statusBtn && <Button onClick={this.props.LoadMoreBtn}/>
                     ) : (
                         alert('No result')
                     )}
